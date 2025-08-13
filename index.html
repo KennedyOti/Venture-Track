@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VentureTrack - Entrepreneurship Management Platform</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+    />
+    <style>
+      :root {
+        --primary-green: #2ecc71;
+        --dark-green: #27ae60;
+        --light-green: #d5f5e3;
+        --dark-text: #2c3e50;
+        --light-text: #7f8c8d;
+        --border-color: #ecf0f1;
+        --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--dark-text);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .navbar {
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        padding: 20px 0;
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        color: var(--primary-green);
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar-brand i {
+        margin-right: 8px;
+      }
+
+      .nav-link {
+        color: var(--dark-text);
+        font-weight: 500;
+        padding: 8px 15px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: var(--dark-green);
+      }
+
+      .btn-primary {
+        background-color: var(--primary-green);
+        border-color: var(--primary-green);
+        padding: 10px 24px;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--dark-green);
+        border-color: var(--dark-green);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+      }
+
+      .btn-outline-primary {
+        color: var(--primary-green);
+        border-color: var(--primary-green);
+        padding: 10px 24px;
+        font-weight: 600;
+        border-radius: 8px;
+      }
+
+      .btn-outline-primary:hover {
+        background-color: var(--primary-green);
+        color: white;
+      }
+
+      .hero {
+        padding: 100px 0 80px;
+        background: linear-gradient(
+          135deg,
+          rgba(213, 245, 227, 0.3) 0%,
+          rgba(255, 255, 255, 1) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        width: 800px;
+        height: 800px;
+        border-radius: 50%;
+        background: rgba(46, 204, 113, 0.05);
+        top: -400px;
+        right: -200px;
+        z-index: -1;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: var(--light-text);
+        max-width: 600px;
+      }
+
+      .hero-img {
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transform: perspective(1000px) rotateY(-5deg);
+        transition: transform 0.5s ease;
+      }
+
+      .hero-img:hover {
+        transform: perspective(1000px) rotateY(0deg);
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 50px;
+        text-align: center;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: var(--primary-green);
+        border-radius: 2px;
+      }
+
+      .features {
+        padding: 100px 0;
+      }
+
+      .feature-card {
+        border-radius: 16px;
+        border: none;
+        box-shadow: var(--card-shadow);
+        padding: 30px;
+        height: 100%;
+        transition: all 0.3s ease;
+        background: white;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-icon {
+        width: 70px;
+        height: 70px;
+        background: var(--light-green);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+      }
+
+      .feature-icon i {
+        font-size: 28px;
+        color: var(--dark-green);
+      }
+
+      .feature-card h3 {
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+
+      .cta-section {
+        padding: 100px 0;
+        background: linear-gradient(
+          135deg,
+          var(--light-green) 0%,
+          rgba(255, 255, 255, 1) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        padding: 50px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .form-control {
+        padding: 14px 20px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .form-control:focus {
+        border-color: var(--primary-green);
+        box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+      }
+
+      footer {
+        background: var(--dark-text);
+        color: white;
+        padding: 60px 0 30px;
+      }
+
+      .footer-logo {
+        font-weight: 700;
+        color: white;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        display: inline-block;
+      }
+
+      .social-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: white;
+        margin-right: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-links a:hover {
+        background: var(--primary-green);
+        transform: translateY(-3px);
+      }
+
+      .footer-links h5 {
+        font-weight: 600;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-links h5::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: var(--primary-green);
+      }
+
+      .footer-links ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: white;
+        padding-left: 5px;
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 30px;
+        margin-top: 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      /* Responsive Adjustments */
+      @media (max-width: 992px) {
+        .hero h1 {
+          font-size: 2.8rem;
+        }
+
+        .hero-img {
+          margin-top: 50px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          padding: 70px 0 50px;
+        }
+
+        .hero h1 {
+          font-size: 2.3rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .features,
+        .cta-section {
+          padding: 70px 0;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .navbar-brand {
+          font-size: 1.3rem;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .cta-card {
+          padding: 30px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="bi bi-graph-up"></i> VentureTrack
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#features">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#how-it-works">How It Works</a>
+            </li>
+            <li class="nav-item me-2">
+              <a class="nav-link" href="#pricing">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-outline-primary me-2" href="#login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-primary" href="#signup">Sign Up</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 hero-content">
+            <h1>Track, Manage & Grow Your Business</h1>
+            <p>
+              VentureTrack is the all-in-one platform for entrepreneurs to
+              monitor progress, manage tasks, and analyze performance metrics
+              for business success.
+            </p>
+            <div class="d-flex flex-wrap gap-3">
+              <a href="#signup" class="btn btn-primary btn-lg"
+                >Get Started Free</a
+              >
+              <a href="#features" class="btn btn-outline-primary btn-lg"
+                >Learn More</a
+              >
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect fill='%23d5f5e3' width='800' height='600'/%3E%3Cg fill='%232ecc71'%3E%3Crect x='100' y='80' width='600' height='40' rx='8'/%3E%3Crect x='100' y='150' width='250' height='300' rx='12'/%3E%3Crect x='380' y='150' width='320' height='140' rx='12'/%3E%3Crect x='380' y='310' width='320' height='140' rx='12'/%3E%3Ccircle cx='170' cy='200' r='30'/%3E%3Crect x='220' y='190' width='100' height='20' rx='4'/%3E%3Crect x='220' y='230' width='120' height='15' rx='4'/%3E%3Crect x='220' y='260' width='80' height='15' rx='4'/%3E%3Crect x='220' y='290' width='150' height='15' rx='4'/%3E%3Crect x='220' y='320' width='100' height='15' rx='4'/%3E%3C/g%3E%3C/svg%3E"
+              alt="Dashboard Preview"
+              class="img-fluid hero-img"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <div class="container">
+        <h2 class="section-title">Powerful Features</h2>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-speedometer2"></i>
+              </div>
+              <h3>Business Dashboard</h3>
+              <p>
+                Monitor all your key metrics in one place with customizable
+                dashboards that show real-time business performance.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-list-task"></i>
+              </div>
+              <h3>Task Management</h3>
+              <p>
+                Create, assign, and track tasks with deadlines, priorities, and
+                progress indicators for your entire team.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-flag"></i>
+              </div>
+              <h3>Milestone Tracking</h3>
+              <p>
+                Set business milestones, track progress, and celebrate
+                achievements with visual progress indicators.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-graph-up"></i>
+              </div>
+              <h3>Financial Analytics</h3>
+              <p>
+                Track revenue, expenses, and profitability with detailed
+                financial reports and forecasting tools.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-bar-chart"></i>
+              </div>
+              <h3>Performance Insights</h3>
+              <p>
+                Get actionable insights with AI-powered analytics that identify
+                trends and growth opportunities.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-shield-check"></i>
+              </div>
+              <h3>Secure & Reliable</h3>
+              <p>
+                Enterprise-grade security ensures your business data is always
+                protected and backed up.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="cta-section" id="how-it-works">
+      <div class="container">
+        <h2 class="section-title">How VentureTrack Works</h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card mb-4 border-0 shadow">
+              <div class="card-body p-4">
+                <div class="row align-items-center">
+                  <div class="col-md-3 text-center mb-3 mb-md-0">
+                    <div
+                      class="bg-light-green rounded-circle p-4 d-inline-block"
+                    >
+                      <i class="bi bi-person-plus fs-1 text-dark-green"></i>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <h3 class="mb-3">1. Create Your Account</h3>
+                    <p>
+                      Sign up in seconds and set up your entrepreneur profile.
+                      No credit card required to start your free trial.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mb-4 border-0 shadow">
+              <div class="card-body p-4">
+                <div class="row align-items-center">
+                  <div class="col-md-3 text-center mb-3 mb-md-0">
+                    <div
+                      class="bg-light-green rounded-circle p-4 d-inline-block"
+                    >
+                      <i class="bi bi-gear fs-1 text-dark-green"></i>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <h3 class="mb-3">2. Set Up Your Business</h3>
+                    <p>
+                      Add your business details, set goals, milestones, and
+                      configure your dashboard to track what matters most.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mb-4 border-0 shadow">
+              <div class="card-body p-4">
+                <div class="row align-items-center">
+                  <div class="col-md-3 text-center mb-3 mb-md-0">
+                    <div
+                      class="bg-light-green rounded-circle p-4 d-inline-block"
+                    >
+                      <i class="bi bi-graph-up-arrow fs-1 text-dark-green"></i>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <h3 class="mb-3">3. Track & Grow</h3>
+                    <p>
+                      Monitor progress, manage tasks, analyze performance, and
+                      make data-driven decisions to grow your business.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="signup">
+      <div class="container">
+        <div class="cta-card">
+          <div class="row">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+              <h2 class="mb-4">Ready to Transform Your Business?</h2>
+              <p class="mb-4">
+                Join thousands of entrepreneurs who use VentureTrack to
+                streamline their business operations and accelerate growth.
+              </p>
+              <div class="d-flex flex-wrap gap-3">
+                <a href="#signup-form" class="btn btn-primary btn-lg"
+                  >Get Started Free</a
+                >
+                <a href="#" class="btn btn-outline-primary btn-lg"
+                  >Schedule a Demo</a
+                >
+              </div>
+            </div>
+            <div class="col-lg-6" id="login">
+              <h3 class="mb-4">Sign In to Your Account</h3>
+              <form>
+                <div class="mb-3">
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Email Address"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Password"
+                    required
+                  />
+                </div>
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3"
+                >
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="remember"
+                    />
+                    <label class="form-check-label" for="remember"
+                      >Remember me</label
+                    >
+                  </div>
+                  <a href="#" class="text-decoration-none text-primary-green"
+                    >Forgot password?</a
+                  >
+                </div>
+                <button type="submit" class="btn btn-primary w-100">
+                  Sign In
+                </button>
+              </form>
+              <div class="text-center mt-3">
+                <p>
+                  Don't have an account?
+                  <a
+                    href="#signup-form"
+                    class="text-decoration-none text-primary-green fw-bold"
+                    >Sign up now</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row g-5">
+          <div class="col-lg-4">
+            <a href="#" class="footer-logo"
+              ><i class="bi bi-graph-up"></i> VentureTrack</a
+            >
+            <p>
+              Empowering entrepreneurs to build successful businesses through
+              intelligent tracking and management tools.
+            </p>
+            <div class="social-links mt-4">
+              <a href="#"><i class="bi bi-facebook"></i></a>
+              <a href="#"><i class="bi bi-twitter"></i></a>
+              <a href="#"><i class="bi bi-linkedin"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-4">
+            <div class="footer-links">
+              <h5>Product</h5>
+              <ul>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Solutions</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Tutorials</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-4">
+            <div class="footer-links">
+              <h5>Company</h5>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <div class="footer-links">
+              <h5>Stay Updated</h5>
+              <p>
+                Subscribe to our newsletter for the latest updates and insights.
+              </p>
+              <div class="input-group mt-3">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Your email address"
+                />
+                <button class="btn btn-primary" type="button">Subscribe</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2025 VentureTrack. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 80,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Form validation example
+      document.querySelector("form")?.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const email = this.querySelector('input[type="email"]').value;
+        const password = this.querySelector('input[type="password"]').value;
+
+        if (email && password) {
+          alert("Login successful! Redirecting to your dashboard...");
+          // In a real app, you would submit the form here
+        }
+      });
+
+      // Sticky navbar background
+      window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+          navbar.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.1)";
+          navbar.style.padding = "12px 0";
+        } else {
+          navbar.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.05)";
+          navbar.style.padding = "20px 0";
+        }
+      });
+    </script>
+  </body>
+</html>

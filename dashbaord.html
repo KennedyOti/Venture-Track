@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VentureTrack - Entrepreneurship Management Platform</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+    />
+    <style>
+      :root {
+        --primary-green: #2ecc71;
+        --dark-green: #27ae60;
+        --light-green: #d5f5e3;
+        --dark-text: #2c3e50;
+        --light-text: #7f8c8d;
+        --border-color: #ecf0f1;
+        --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--dark-text);
+        background-color: #f8f9fa;
+      }
+
+      .navbar {
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        padding: 15px 0;
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        color: var(--primary-green);
+      }
+
+      .nav-link {
+        color: var(--dark-text);
+        font-weight: 500;
+        padding: 8px 15px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        background-color: var(--light-green);
+        color: var(--dark-green);
+      }
+
+      .btn-primary {
+        background-color: var(--primary-green);
+        border-color: var(--primary-green);
+        padding: 8px 20px;
+        font-weight: 500;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--dark-green);
+        border-color: var(--dark-green);
+      }
+
+      .btn-outline-primary {
+        color: var(--primary-green);
+        border-color: var(--primary-green);
+      }
+
+      .btn-outline-primary:hover {
+        background-color: var(--primary-green);
+        color: white;
+      }
+
+      .card {
+        border-radius: 10px;
+        border: none;
+        box-shadow: var(--card-shadow);
+        margin-bottom: 24px;
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .card-header {
+        background-color: white;
+        border-bottom: 1px solid var(--border-color);
+        font-weight: 600;
+        padding: 16px 20px;
+      }
+
+      .sidebar {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: var(--card-shadow);
+        padding: 20px;
+        height: fit-content;
+      }
+
+      .sidebar .nav-item {
+        margin-bottom: 8px;
+      }
+
+      .stat-card {
+        text-align: center;
+        padding: 20px;
+      }
+
+      .stat-card .number {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--primary-green);
+        margin: 10px 0;
+      }
+
+      .stat-card .label {
+        color: var(--light-text);
+        font-size: 0.9rem;
+      }
+
+      .progress {
+        height: 10px;
+        border-radius: 5px;
+        margin: 15px 0;
+      }
+
+      .progress-bar {
+        background-color: var(--primary-green);
+      }
+
+      .milestone-item {
+        padding: 15px 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .milestone-item:last-child {
+        border-bottom: none;
+      }
+
+      .task-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 15px;
+        border-bottom: 1px solid var(--border-color);
+        transition: background-color 0.2s;
+      }
+
+      .task-item:hover {
+        background-color: #f8f9fa;
+      }
+
+      .task-item.completed .task-title {
+        text-decoration: line-through;
+        color: var(--light-text);
+      }
+
+      .task-check {
+        margin-right: 15px;
+      }
+
+      .chart-container {
+        height: 300px;
+        position: relative;
+      }
+
+      footer {
+        background-color: white;
+        padding: 40px 0 20px;
+        margin-top: 40px;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .section-title {
+        font-weight: 700;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--light-green);
+        color: var(--dark-text);
+      }
+
+      .metric-badge {
+        background-color: var(--light-green);
+        color: var(--dark-green);
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="bi bi-graph-up"></i> VentureTrack
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#"
+                ><i class="bi bi-speedometer2 me-2"></i>Dashboard</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                ><i class="bi bi-list-task me-2"></i>Tasks</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                ><i class="bi bi-flag me-2"></i>Milestones</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                ><i class="bi bi-bar-chart me-2"></i>Analytics</a
+              >
+            </li>
+          </ul>
+          <div class="d-flex align-items-center">
+            <div class="dropdown me-3">
+              <a
+                href="#"
+                class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                id="notifications"
+                data-bs-toggle="dropdown"
+              >
+                <i class="bi bi-bell fs-5 position-relative">
+                  <span
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  >
+                    3
+                  </span>
+                </i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item" href="#">New milestone achieved!</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"
+                    >Task deadline approaching</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Revenue target reached</a>
+                </li>
+              </ul>
+            </div>
+            <div class="dropdown">
+              <a
+                href="#"
+                class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                id="userMenu"
+                data-bs-toggle="dropdown"
+              >
+                <img
+                  src="https://ui-avatars.com/api/?name=John+Doe&background=2ecc71&color=fff"
+                  class="rounded-circle me-2"
+                  width="36"
+                  height="36"
+                />
+                <span class="d-none d-md-inline">John Doe</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="bi bi-person me-2"></i>Profile</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="bi bi-gear me-2"></i>Settings</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="bi bi-box-arrow-right me-2"></i>Logout</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-4">
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-lg-3 mb-4">
+          <div class="sidebar">
+            <h5 class="mb-3">Quick Actions</h5>
+            <button class="btn btn-primary w-100 mb-3">
+              <i class="bi bi-plus-circle me-2"></i>New Task
+            </button>
+            <button class="btn btn-outline-primary w-100 mb-4">
+              <i class="bi bi-flag me-2"></i>Set Milestone
+            </button>
+
+            <h5 class="mb-3">My Businesses</h5>
+            <div class="list-group">
+              <a href="#" class="list-group-item list-group-item-action active">
+                <i class="bi bi-shop me-2"></i>EcoTech Solutions
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <i class="bi bi-shop me-2"></i>Green Food Co.
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <i class="bi bi-shop me-2"></i>Digital Marketing Pro
+              </a>
+            </div>
+
+            <div class="mt-4">
+              <h5 class="mb-3">Progress Summary</h5>
+              <div class="d-flex justify-content-between mb-2">
+                <span>Business Plan</span>
+                <span class="metric-badge">85%</span>
+              </div>
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  style="width: 85%"
+                ></div>
+              </div>
+
+              <div class="d-flex justify-content-between mb-2 mt-3">
+                <span>Financial Model</span>
+                <span class="metric-badge">60%</span>
+              </div>
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  style="width: 60%"
+                ></div>
+              </div>
+
+              <div class="d-flex justify-content-between mb-2 mt-3">
+                <span>Marketing Strategy</span>
+                <span class="metric-badge">45%</span>
+              </div>
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  style="width: 45%"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Dashboard -->
+        <div class="col-lg-9">
+          <!-- Dashboard Header -->
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h2 class="mb-1">Dashboard</h2>
+              <p class="text-muted">
+                Welcome back, John! Here's your business progress summary.
+              </p>
+            </div>
+            <div>
+              <button class="btn btn-outline-primary">
+                <i class="bi bi-download me-2"></i>Export Report
+              </button>
+            </div>
+          </div>
+
+          <!-- Stats Cards -->
+          <div class="row mb-4">
+            <div class="col-md-3 col-6">
+              <div class="card stat-card">
+                <i class="bi bi-currency-dollar fs-1 text-primary"></i>
+                <div class="number">$24,580</div>
+                <div class="label">Quarterly Revenue</div>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="card stat-card">
+                <i class="bi bi-check-circle fs-1 text-primary"></i>
+                <div class="number">42</div>
+                <div class="label">Tasks Completed</div>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="card stat-card">
+                <i class="bi bi-people fs-1 text-primary"></i>
+                <div class="number">1,248</div>
+                <div class="label">Customers</div>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="card stat-card">
+                <i class="bi bi-graph-up fs-1 text-primary"></i>
+                <div class="number">18.5%</div>
+                <div class="label">Growth Rate</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts Row -->
+          <div class="row mb-4">
+            <div class="col-md-8">
+              <div class="card">
+                <div
+                  class="card-header d-flex justify-content-between align-items-center"
+                >
+                  <span>Business Performance</span>
+                  <div>
+                    <button class="btn btn-sm btn-outline-secondary">
+                      Month
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary active">
+                      Quarter
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary">
+                      Year
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="chart-container">
+                    <canvas id="performanceChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-header">Goal Progress</div>
+                <div class="card-body">
+                  <div class="chart-container">
+                    <canvas id="goalChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tasks & Milestones -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card">
+                <div
+                  class="card-header d-flex justify-content-between align-items-center"
+                >
+                  <span>Recent Tasks</span>
+                  <a href="#" class="btn btn-sm btn-outline-primary"
+                    >View All</a
+                  >
+                </div>
+                <div class="card-body p-0">
+                  <div class="task-item">
+                    <div class="form-check task-check">
+                      <input class="form-check-input" type="checkbox" />
+                    </div>
+                    <div class="flex-grow-1">
+                      <div class="task-title">
+                        Complete financial projections
+                      </div>
+                      <small class="text-muted">Due: Today, 5:00 PM</small>
+                    </div>
+                    <span class="badge bg-warning text-dark">High</span>
+                  </div>
+                  <div class="task-item">
+                    <div class="form-check task-check">
+                      <input class="form-check-input" type="checkbox" />
+                    </div>
+                    <div class="flex-grow-1">
+                      <div class="task-title">Update marketing strategy</div>
+                      <small class="text-muted">Due: Tomorrow, 10:00 AM</small>
+                    </div>
+                    <span class="badge bg-info">Medium</span>
+                  </div>
+                  <div class="task-item completed">
+                    <div class="form-check task-check">
+                      <input class="form-check-input" type="checkbox" checked />
+                    </div>
+                    <div class="flex-grow-1">
+                      <div class="task-title">Meet with investors</div>
+                      <small class="text-muted">Completed: Yesterday</small>
+                    </div>
+                    <span class="badge bg-success"
+                      ><i class="bi bi-check"></i
+                    ></span>
+                  </div>
+                  <div class="task-item">
+                    <div class="form-check task-check">
+                      <input class="form-check-input" type="checkbox" />
+                    </div>
+                    <div class="flex-grow-1">
+                      <div class="task-title">Research competitor pricing</div>
+                      <small class="text-muted">Due: Aug 15, 2025</small>
+                    </div>
+                    <span class="badge bg-info">Medium</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card">
+                <div
+                  class="card-header d-flex justify-content-between align-items-center"
+                >
+                  <span>Key Milestones</span>
+                  <a href="#" class="btn btn-sm btn-outline-primary"
+                    >View All</a
+                  >
+                </div>
+                <div class="card-body">
+                  <div class="milestone-item">
+                    <div class="d-flex justify-content-between">
+                      <strong>Secure Seed Funding</strong>
+                      <span class="metric-badge">Achieved</span>
+                    </div>
+                    <small class="text-muted">Completed: July 28, 2025</small>
+                  </div>
+                  <div class="milestone-item">
+                    <div class="d-flex justify-content-between">
+                      <strong>Launch MVP</strong>
+                      <span class="metric-badge">On Track</span>
+                    </div>
+                    <small class="text-muted">Target: Sep 15, 2025</small>
+                    <div class="progress mt-2">
+                      <div
+                        class="progress-bar"
+                        role="progressbar"
+                        style="width: 65%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="milestone-item">
+                    <div class="d-flex justify-content-between">
+                      <strong>Reach 500 Customers</strong>
+                      <span class="metric-badge">Behind</span>
+                    </div>
+                    <small class="text-muted">Target: Aug 30, 2025</small>
+                    <div class="progress mt-2">
+                      <div
+                        class="progress-bar bg-warning"
+                        role="progressbar"
+                        style="width: 35%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="milestone-item">
+                    <div class="d-flex justify-content-between">
+                      <strong>Hire Core Team</strong>
+                      <span class="metric-badge">Planning</span>
+                    </div>
+                    <small class="text-muted">Target: Oct 1, 2025</small>
+                    <div class="progress mt-2">
+                      <div
+                        class="progress-bar"
+                        role="progressbar"
+                        style="width: 15%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h5 class="section-title">VentureTrack</h5>
+            <p>
+              Empowering entrepreneurs to track, manage, and grow their
+              businesses with powerful analytics and intuitive tools.
+            </p>
+            <div class="mt-3">
+              <a href="#" class="me-2 text-decoration-none text-dark"
+                ><i class="bi bi-facebook fs-5"></i
+              ></a>
+              <a href="#" class="me-2 text-decoration-none text-dark"
+                ><i class="bi bi-twitter fs-5"></i
+              ></a>
+              <a href="#" class="me-2 text-decoration-none text-dark"
+                ><i class="bi bi-linkedin fs-5"></i
+              ></a>
+              <a href="#" class="text-decoration-none text-dark"
+                ><i class="bi bi-instagram fs-5"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-md-2 mb-4">
+            <h5 class="section-title">Product</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="#" class="text-decoration-none text-muted">Features</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-decoration-none text-muted"
+                  >Solutions</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-decoration-none text-muted">Pricing</a>
+              </li>
+              <li>
+                <a href="#" class="text-decoration-none text-muted"
+                  >Tutorials</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-2 mb-4">
+            <h5 class="section-title">Company</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="#" class="text-decoration-none text-muted">About Us</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-decoration-none text-muted">Careers</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-decoration-none text-muted">Blog</a>
+              </li>
+              <li>
+                <a href="#" class="text-decoration-none text-muted">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h5 class="section-title">Subscribe to Newsletter</h5>
+            <p>Stay updated with our latest news and product updates.</p>
+            <div class="input-group mb-3">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Your email address"
+              />
+              <button class="btn btn-primary" type="button">Subscribe</button>
+            </div>
+          </div>
+        </div>
+        <div class="text-center pt-4 mt-4 border-top">
+          <p class="text-muted">© 2025 VentureTrack. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      // Initialize charts
+      document.addEventListener("DOMContentLoaded", function () {
+        // Performance Chart
+        const perfCtx = document
+          .getElementById("performanceChart")
+          .getContext("2d");
+        const perfChart = new Chart(perfCtx, {
+          type: "line",
+          data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
+            datasets: [
+              {
+                label: "Revenue ($)",
+                data: [12000, 14000, 13500, 17000, 18500, 19500, 23000, 24580],
+                borderColor: "#2ecc71",
+                backgroundColor: "rgba(46, 204, 113, 0.1)",
+                tension: 0.3,
+                fill: true,
+              },
+              {
+                label: "Expenses ($)",
+                data: [8000, 8500, 9000, 9500, 10000, 11000, 11500, 12000],
+                borderColor: "#e74c3c",
+                backgroundColor: "rgba(231, 76, 60, 0.1)",
+                tension: 0.3,
+                fill: true,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: "top",
+              },
+            },
+          },
+        });
+
+        // Goal Progress Chart
+        const goalCtx = document.getElementById("goalChart").getContext("2d");
+        const goalChart = new Chart(goalCtx, {
+          type: "doughnut",
+          data: {
+            labels: ["Completed", "In Progress", "Not Started"],
+            datasets: [
+              {
+                data: [35, 45, 20],
+                backgroundColor: ["#2ecc71", "#3498db", "#ecf0f1"],
+                borderWidth: 0,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: "bottom",
+              },
+            },
+            cutout: "70%",
+          },
+        });
+
+        // Task completion toggle
+        document.querySelectorAll(".task-check input").forEach((checkbox) => {
+          checkbox.addEventListener("change", function () {
+            const taskItem = this.closest(".task-item");
+            taskItem.classList.toggle("completed", this.checked);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
